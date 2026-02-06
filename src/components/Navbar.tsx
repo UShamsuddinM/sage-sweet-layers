@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShoppingBag, X, Menu } from "lucide-react";
 
 const cakesMegaMenu = {
@@ -17,6 +18,7 @@ const sweetsGrid = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [cakesOpen, setCakesOpen] = useState(false);
   const [sweetsOpen, setSweetsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -40,7 +42,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <button
               className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
-              onClick={() => { setSweetsOpen(false); setCakesOpen(!cakesOpen); }}
+              onClick={() => { closeAll(); navigate("/product/demo-cake"); }}
             >
               Cakes
             </button>
@@ -118,7 +120,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div className="md:hidden bg-sl-cream border-b border-border px-6 py-6 space-y-4 z-50">
-            <a href="#" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Cakes</a>
+            <button onClick={() => { setMobileOpen(false); navigate("/product/demo-cake"); }} className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Cakes</button>
             <a href="#" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Sweets</a>
             <a href="#custom" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Custom</a>
           </div>

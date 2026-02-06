@@ -5,7 +5,10 @@ const cakes = [
   { name: "Lemon Elderflower", price: 68 },
 ];
 
+import { useNavigate } from "react-router-dom";
+
 const FeaturedCakes = () => {
+  const navigate = useNavigate();
   return (
     <section id="featured" className="bg-sl-cream cream-grain py-24 md:py-32">
       {/* Extra top padding for Cake Finder overlap */}
@@ -18,11 +21,11 @@ const FeaturedCakes = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {cakes.map((cake) => (
-            <a href="#" key={cake.name} className="group">
+            <button onClick={() => navigate("/product/demo-cake")} key={cake.name} className="group text-left cursor-pointer">
               <div className="aspect-[3/4] rounded-none shimmer-placeholder mb-4 overflow-hidden group-hover:shadow-lg transition-shadow" />
               <h3 className="font-cormorant text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors tracking-wide">{cake.name}</h3>
               <p className="text-xs font-manrope text-muted-foreground mt-1">From ${cake.price}.00</p>
-            </a>
+            </button>
           ))}
         </div>
       </div>
