@@ -10,8 +10,8 @@ const ShopByOccasion = () => {
     <section className="bg-sl-sage py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-sm tracking-[0.2em] uppercase font-manrope font-medium text-muted-foreground mb-3">Find Your Perfect Cake</p>
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground">Shop by Occasion</h2>
+          <p className="text-xs tracking-[0.2em] uppercase font-manrope font-medium text-muted-foreground mb-3">Find Your Perfect Cake</p>
+          <h2 className="font-cormorant text-3xl md:text-4xl font-bold text-foreground tracking-wide">Shop by Occasion</h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[280px]">
@@ -19,13 +19,13 @@ const ShopByOccasion = () => {
             <a
               href="#"
               key={occ.name}
-              className={`relative rounded-lg overflow-hidden group ${
+              className={`relative rounded-none overflow-hidden group ${
                 occ.size === "large" ? "row-span-2" : ""
               } shimmer-placeholder`}
             >
               <div className="absolute inset-0 bg-foreground/10 group-hover:bg-foreground/20 transition-colors" />
               <div className="absolute inset-0 flex items-end p-6">
-                <h3 className="font-playfair text-xl md:text-2xl font-bold text-foreground">{occ.name}</h3>
+                <h3 className="font-cormorant text-xl md:text-2xl font-bold text-foreground tracking-wide">{occ.name}</h3>
               </div>
             </a>
           ))}
