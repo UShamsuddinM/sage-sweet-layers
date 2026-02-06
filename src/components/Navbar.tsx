@@ -95,9 +95,12 @@ const Navbar = () => {
 
           {/* Right Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#custom" className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors">
+            <button
+              onClick={() => navigate("/custom")}
+              className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
+            >
               Custom
-            </a>
+            </button>
             <button className="text-foreground hover:text-primary transition-colors relative">
               <ShoppingBag size={20} />
               <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">0</span>
@@ -171,7 +174,7 @@ const Navbar = () => {
           <div className="md:hidden bg-sl-cream border-b border-border px-6 py-6 space-y-4 z-50">
             <button onClick={() => { setMobileOpen(false); navigate("/product/demo-cake"); }} className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Cakes</button>
             <a href="#" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Sweets</a>
-            <a href="#custom" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Custom</a>
+            <button onClick={() => { setMobileOpen(false); navigate("/custom"); }} className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Custom</button>
           </div>
         )}
       </nav>
