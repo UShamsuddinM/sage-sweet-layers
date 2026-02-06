@@ -1,6 +1,6 @@
 const Personalize = () => {
   return (
-    <section className="bg-sl-cream py-24 md:py-32">
+    <section className="bg-sl-cream cream-grain py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Image placeholder */}
