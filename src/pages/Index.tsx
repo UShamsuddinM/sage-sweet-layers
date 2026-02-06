@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FeaturedCakes from "@/components/FeaturedCakes";
-import ShopByOccasion from "@/components/ShopByOccasion";
-import Personalize from "@/components/Personalize";
-import Reviews from "@/components/Reviews";
-import VisitShop from "@/components/VisitShop";
+import ValentinesSweets from "@/components/ValentinesSweets";
+import JubileeCollection from "@/components/JubileeCollection";
+import BirthdayCakes from "@/components/BirthdayCakes";
+import WeddingBanner from "@/components/WeddingBanner";
+import AtelierSection from "@/components/AtelierSection";
+import PatisserieGrid from "@/components/PatisserieGrid";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -13,11 +14,12 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <FeaturedCakes />
-        <ShopByOccasion />
-        <Personalize />
-        <Reviews />
-        <VisitShop />
+        <ValentinesSweets />
+        <JubileeCollection />
+        <BirthdayCakes />
+        <WeddingBanner />
+        <AtelierSection />
+        <PatisserieGrid />
       </main>
       <Footer />
     </div>
