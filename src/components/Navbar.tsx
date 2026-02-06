@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingBag, X, Menu } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 const cakesMegaMenu = {
   "By Time": ["Same Day", "Next Day", "2-3 Days", "Weekly Specials"],
@@ -18,6 +19,7 @@ const sweetsGrid = [
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { openCart, count } = useCart();
   const [cakesOpen, setCakesOpen] = useState(false);
   const [sweetsOpen, setSweetsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -101,15 +103,20 @@ const Navbar = () => {
             >
               Custom
             </button>
-            <button className="text-foreground hover:text-primary transition-colors relative">
+            <button onClick={openCart} className="text-foreground hover:text-primary transition-colors relative">
               <ShoppingBag size={20} />
-              <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">0</span>
+              {count > 0 && (
+                <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">{count}</span>
+              )}
             </button>
           </div>
 
           {/* Mobile cart */}
-          <button className="md:hidden text-foreground hover:text-primary transition-colors relative">
+          <button onClick={openCart} className="md:hidden text-foreground hover:text-primary transition-colors relative">
             <ShoppingBag size={20} />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">{count}</span>
+            )}
           </button>
         </div>
 
