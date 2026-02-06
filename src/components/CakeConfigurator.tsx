@@ -89,10 +89,10 @@ const CakeConfigurator = () => {
             <div className="space-y-2">
               <label className="font-manrope text-xs text-foreground tracking-wide">Size</label>
               <Select value={selectedSize} onValueChange={setSelectedSize}>
-                <SelectTrigger className="rounded-none border-[1px] border-[#C5A059] font-manrope text-sm h-11">
+              <SelectTrigger className="rounded-none border-[1px] border-[#C5A059]/50 bg-transparent font-manrope text-sm h-11">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="rounded-none border-[#C5A059]">
+                <SelectContent className="rounded-none border-[#C5A059]/50 bg-background">
                   {PRODUCT_DATA.sizes.map((s, i) => (
                     <SelectItem key={s.label} value={String(i)} className="font-manrope text-sm">
                       {s.label}
@@ -106,10 +106,10 @@ const CakeConfigurator = () => {
             <div className="space-y-2">
               <label className="font-manrope text-xs text-foreground tracking-wide">Flavor</label>
               <Select value={selectedFlavor} onValueChange={setSelectedFlavor}>
-                <SelectTrigger className="rounded-none border-[1px] border-[#C5A059] font-manrope text-sm h-11">
+                <SelectTrigger className="rounded-none border-[1px] border-[#C5A059]/50 bg-transparent font-manrope text-sm h-11">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="rounded-none border-[#C5A059]">
+                <SelectContent className="rounded-none border-[#C5A059]/50 bg-background">
                   {PRODUCT_DATA.flavors.map((f) => (
                     <SelectItem key={f} value={f} className="font-manrope text-sm">
                       {f}
@@ -129,10 +129,10 @@ const CakeConfigurator = () => {
                   if (v === "none") { setSelectedPreset(""); setCustomText(""); }
                 }}
               >
-                <SelectTrigger className="rounded-none border-[1px] border-[#C5A059] font-manrope text-sm h-11">
+                <SelectTrigger className="rounded-none border-[1px] border-[#C5A059]/50 bg-transparent font-manrope text-sm h-11">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="rounded-none border-[#C5A059]">
+                <SelectContent className="rounded-none border-[#C5A059]/50 bg-background">
                   <SelectItem value="none" className="font-manrope text-sm">None</SelectItem>
                   <SelectItem value="standard" className="font-manrope text-sm">Standard Message</SelectItem>
                   <SelectItem value="custom" className="font-manrope text-sm">Custom (30 chars)</SelectItem>
@@ -141,10 +141,10 @@ const CakeConfigurator = () => {
 
               {inscriptionMode === "standard" && (
                 <Select value={selectedPreset} onValueChange={setSelectedPreset}>
-                  <SelectTrigger className="rounded-none border-[1px] border-[#C5A059] font-manrope text-sm h-11">
+                   <SelectTrigger className="rounded-none border-[1px] border-[#C5A059]/50 bg-transparent font-manrope text-sm h-11">
                     <SelectValue placeholder="Choose message..." />
                   </SelectTrigger>
-                  <SelectContent className="rounded-none border-[#C5A059]">
+                  <SelectContent className="rounded-none border-[#C5A059]/50 bg-background">
                     {PRODUCT_DATA.presetInscriptions.map((text) => (
                       <SelectItem key={text} value={text} className="font-manrope text-sm">
                         {text}
@@ -161,7 +161,7 @@ const CakeConfigurator = () => {
                     value={customText}
                     onChange={(e) => setCustomText(e.target.value.slice(0, 30))}
                     placeholder="Type your message..."
-                    className="w-full px-4 py-2.5 rounded-none border-[1px] border-[#C5A059] bg-background text-sm font-manrope text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
+                    className="w-full px-4 py-2.5 rounded-none border-[1px] border-[#C5A059]/50 bg-transparent text-sm font-manrope text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                   />
                   <p className="text-[10px] font-manrope text-muted-foreground">
                     {customText.length}/30
@@ -179,9 +179,9 @@ const CakeConfigurator = () => {
                     key={p.name}
                     onClick={() => setSelectedPalette(i)}
                     className={cn(
-                      "px-5 py-2.5 rounded-none border-[1px] border-[#C5A059] font-manrope text-xs transition-colors",
+                      "px-5 py-2.5 rounded-none border-[1px] border-[#C5A059]/50 font-manrope text-xs transition-colors",
                       selectedPalette === i
-                        ? "bg-[#C5A059] text-white"
+                        ? "bg-[#C5A059] text-white border-[#C5A059]"
                         : "bg-transparent text-foreground hover:bg-[#C5A059]/10"
                     )}
                   >
@@ -191,37 +191,14 @@ const CakeConfigurator = () => {
               </div>
             </div>
 
-            {/* Add to Cart */}
-            <button className="w-full py-3.5 rounded-none bg-foreground text-background font-manrope font-semibold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-[#C5A059]">
-              Add to Cart
-            </button>
-          </div>
-
-          {/* CENTER COL (Span 6): The Stage */}
-          <div className="order-1 lg:order-2 lg:col-span-6 flex items-start justify-center px-0 lg:px-8">
-            <div className="w-full aspect-square shimmer-placeholder border border-[#C5A059]/20" />
-          </div>
-
-          {/* RIGHT COL (Span 3): The Story */}
-          <div className="order-3 lg:col-span-3 space-y-6 pt-2">
-            <p className="font-manrope text-sm text-foreground leading-relaxed">
-              {PRODUCT_DATA.description}
-            </p>
-            <p className="font-manrope text-sm text-muted-foreground leading-relaxed italic">
-              {PRODUCT_DATA.whatAndWhy}
-            </p>
-            <p className="font-manrope text-sm text-muted-foreground leading-relaxed">
-              {PRODUCT_DATA.availability}
-            </p>
-
-            {/* Date Picker */}
+            {/* Date Picker - moved from Right Column */}
             <div className="space-y-2">
               <label className="font-manrope text-xs text-foreground tracking-wide">Get it by</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <button
                     className={cn(
-                      "flex items-center gap-2 w-full px-4 py-2.5 rounded-none border-[1px] border-[#C5A059] bg-background text-left font-manrope text-sm transition-colors hover:bg-[#C5A059]/10",
+                      "flex items-center gap-2 w-full px-4 py-2.5 rounded-none border-[1px] border-[#C5A059]/50 bg-transparent text-left font-manrope text-sm transition-colors hover:bg-[#C5A059]/10",
                       !deliveryDate && "text-muted-foreground"
                     )}
                   >
@@ -241,6 +218,33 @@ const CakeConfigurator = () => {
                 </PopoverContent>
               </Popover>
             </div>
+
+            {/* Add to Cart */}
+            <button className="w-full py-3.5 rounded-none bg-foreground text-background font-manrope font-semibold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-[#C5A059]">
+              Add to Cart
+            </button>
+          </div>
+
+          {/* CENTER COL (Span 6): The Stage */}
+          <div className="order-1 lg:order-2 lg:col-span-6 flex items-start justify-center px-0 lg:px-8">
+            <img
+              src="/placeholder.svg"
+              alt="The Minimalist cake"
+              className="w-full aspect-square object-cover border border-[#C5A059]/20 shimmer-placeholder"
+            />
+          </div>
+
+          {/* RIGHT COL (Span 3): The Story */}
+          <div className="order-3 lg:col-span-3 space-y-6 pt-2">
+            <p className="font-manrope text-sm text-foreground leading-relaxed">
+              {PRODUCT_DATA.description}
+            </p>
+            <p className="font-manrope text-sm text-muted-foreground leading-relaxed italic">
+              {PRODUCT_DATA.whatAndWhy}
+            </p>
+            <p className="font-manrope text-sm text-muted-foreground leading-relaxed">
+              {PRODUCT_DATA.availability}
+            </p>
 
             <p className="font-manrope text-xs text-muted-foreground">
               // Check out our{" "}
