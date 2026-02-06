@@ -22,7 +22,7 @@ const AppInner = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/product/demo-cake" element={<ProductPage />} />
+          <Route path="/product/:handle" element={<ProductPage />} />
           <Route path="/custom" element={<CustomPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
