@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingBag, X, Menu } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { useCartStore } from "@/stores/cartStore";
 
 const cakesMegaMenu = {
   "By Time": ["Same Day", "Next Day", "2-3 Days", "Weekly Specials"],
@@ -19,7 +19,8 @@ const sweetsGrid = [
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { openCart, count } = useCart();
+  const openCart = useCartStore(s => s.openCart);
+  const count = useCartStore(s => s.count);
   const [cakesOpen, setCakesOpen] = useState(false);
   const [sweetsOpen, setSweetsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);

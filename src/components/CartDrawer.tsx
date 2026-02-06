@@ -1,15 +1,23 @@
 import { useEffect } from "react";
-import { X } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { X, Minus, Plus, Loader2 } from "lucide-react";
+import { useCartStore } from "@/stores/cartStore";
 
 const CartDrawer = () => {
-  const { items, isOpen, closeCart, removeItem, subtotal } = useCart();
+  const { items, isOpen, isLoading, isSyncing, closeCart, removeItem, updateQuantity, getCheckoutUrl, syncCart } = useCartStore();
+  const subtotal = useCartStore(s => s.subtotal);
+  const count = useCartStore(s => s.count);
 
-  // Lock body scroll when open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  useEffect(() => { if (isOpen) syncCart(); }, [isOpen, syncCart]);
+
+  const handleCheckout = () => {
+    const url = getCheckoutUrl();
+    if (url) { window.open(url, '_blank'); closeCart(); }
+  };
 
   return (
     <>
@@ -30,7 +38,7 @@ const CartDrawer = () => {
         {/* Header */}
         <div className="bg-sl-sage px-6 py-5 flex items-center justify-between flex-shrink-0">
           <h2 className="font-cormorant text-xl tracking-wide text-foreground">
-            Your Selection
+            Your Selection {count > 0 && `(${count})`}
           </h2>
           <button onClick={closeCart} className="text-foreground hover:text-primary transition-colors">
             <X size={20} />
@@ -47,40 +55,59 @@ const CartDrawer = () => {
             </div>
           ) : (
             <div className="space-y-6">
-              {items.map((item) => (
-                <div key={item.id} className="flex gap-4 border-b border-sl-gold/20 pb-6">
-                  {/* Thumbnail */}
-                  <div className="w-20 h-20 flex-shrink-0 bg-sl-sage border border-sl-gold/20 rounded-none overflow-hidden">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                  </div>
+              {items.map((item) => {
+                const imgUrl = item.product.node.images?.edges?.[0]?.node?.url;
+                return (
+                  <div key={item.variantId} className="flex gap-4 border-b border-sl-gold/20 pb-6">
+                    {/* Thumbnail */}
+                    <div className="w-20 h-20 flex-shrink-0 bg-sl-sage border border-sl-gold/20 rounded-none overflow-hidden">
+                      {imgUrl ? (
+                        <img src={imgUrl} alt={item.product.node.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full shimmer-placeholder" />
+                      )}
+                    </div>
 
-                  {/* Details */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-manrope text-sm font-semibold text-foreground truncate">
-                      {item.name}
-                    </h3>
-                    <p className="font-manrope text-[11px] text-foreground/60 mt-0.5">
-                      {item.size} · {item.flavor}
-                    </p>
-                    {item.inscription && (
-                      <p className="font-manrope text-[10px] text-foreground/40 italic mt-0.5">
-                        "{item.inscription}"
+                    {/* Details */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-manrope text-sm font-semibold text-foreground truncate">
+                        {item.product.node.title}
+                      </h3>
+                      <p className="font-manrope text-[11px] text-foreground/60 mt-0.5">
+                        {item.selectedOptions.map(o => o.value).join(' · ')}
                       </p>
-                    )}
-                    <div className="flex items-center justify-between mt-2">
-                      <p className="font-manrope text-sm font-medium text-foreground">
-                        ${item.price}.00
+                      <p className="font-manrope text-sm font-medium text-foreground mt-1">
+                        ${parseFloat(item.price.amount).toFixed(2)}
                       </p>
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="font-manrope text-[11px] text-sl-gold hover:text-primary transition-colors tracking-wide"
-                      >
-                        Remove
-                      </button>
+
+                      <div className="flex items-center justify-between mt-2">
+                        {/* Quantity controls */}
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
+                            className="w-6 h-6 border border-sl-gold/30 flex items-center justify-center text-foreground hover:bg-sl-sage transition-colors rounded-none"
+                          >
+                            <Minus size={12} />
+                          </button>
+                          <span className="font-manrope text-sm w-6 text-center">{item.quantity}</span>
+                          <button
+                            onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
+                            className="w-6 h-6 border border-sl-gold/30 flex items-center justify-center text-foreground hover:bg-sl-sage transition-colors rounded-none"
+                          >
+                            <Plus size={12} />
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => removeItem(item.variantId)}
+                          className="font-manrope text-[11px] text-sl-gold hover:text-primary transition-colors tracking-wide"
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -93,10 +120,15 @@ const CartDrawer = () => {
                 Subtotal
               </span>
               <span className="font-manrope text-base font-semibold text-foreground">
-                ${subtotal}.00
+                ${subtotal.toFixed(2)}
               </span>
             </div>
-            <button className="w-full py-3.5 rounded-none bg-sl-emerald text-sl-gold font-manrope font-bold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-foreground">
+            <button
+              onClick={handleCheckout}
+              disabled={isLoading || isSyncing}
+              className="w-full py-3.5 rounded-none bg-sl-emerald text-sl-gold font-manrope font-bold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-foreground disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {(isLoading || isSyncing) ? <Loader2 size={14} className="animate-spin" /> : null}
               Checkout
             </button>
           </div>

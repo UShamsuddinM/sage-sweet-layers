@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
-import { useCart } from "@/context/CartContext";
+// Cart integration removed — will be re-wired when products are added to Shopify
 import {
   Select,
   SelectContent,
@@ -40,7 +40,7 @@ const PRODUCT_DATA = {
 type InscriptionMode = "none" | "standard" | "custom";
 
 const CakeConfigurator = () => {
-  const { addItem } = useCart();
+  // TODO: Wire to Shopify cart once products are created in Shopify
   const [selectedSize, setSelectedSize] = useState("0");
   const [selectedFlavor, setSelectedFlavor] = useState(PRODUCT_DATA.flavors[0]);
   const [selectedPalette, setSelectedPalette] = useState(0);
@@ -224,17 +224,8 @@ const CakeConfigurator = () => {
             {/* Add to Cart */}
             <button
               onClick={() => {
-                const sizeData = PRODUCT_DATA.sizes[Number(selectedSize)];
-                const inscription = inscriptionMode === "standard" ? selectedPreset : inscriptionMode === "custom" ? customText : undefined;
-                addItem({
-                  id: `${Date.now()}`,
-                  name: PRODUCT_DATA.name,
-                  size: sizeData.label,
-                  flavor: selectedFlavor,
-                  price: sizeData.price,
-                  image: "/placeholder.svg",
-                  inscription,
-                });
+                // Shopify cart integration pending — products need to be created in Shopify first
+                console.log('Add to cart clicked — awaiting Shopify product setup');
               }}
               className="w-full py-3.5 rounded-none bg-foreground text-background font-manrope font-semibold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-[#C5A059]"
             >
