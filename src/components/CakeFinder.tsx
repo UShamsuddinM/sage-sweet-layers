@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -8,6 +9,7 @@ import { cn } from "@/lib/utils";
 const flavors = ["Chocolate", "Vanilla", "Red Velvet", "Lemon", "Carrot", "Strawberry"];
 
 const CakeFinder = () => {
+  const navigate = useNavigate();
   const [date, setDate] = useState<Date>();
   const [mode, setMode] = useState<"pickup" | "delivery">("pickup");
   const [flavor, setFlavor] = useState("");
@@ -72,7 +74,7 @@ const CakeFinder = () => {
         </select>
 
         {/* CTA */}
-        <button className="border border-primary bg-transparent hover:bg-primary text-primary hover:text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-6 py-3 rounded-none transition-colors whitespace-nowrap">
+        <button onClick={() => navigate("/product/demo-cake")} className="border border-primary bg-transparent hover:bg-primary text-primary hover:text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-6 py-3 rounded-none transition-colors whitespace-nowrap">
           Find Your Cake
         </button>
       </div>
