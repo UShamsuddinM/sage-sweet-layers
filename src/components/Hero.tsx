@@ -10,20 +10,20 @@ const Hero = () => {
             {/* Left-side dark gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-[hsl(152,17%,21%,0.35)] via-[hsl(152,17%,21%,0.25)] to-transparent -left-[9999px] pl-[9999px] -z-0 pointer-events-none" />
             <div className="relative z-10">
-              <p className="text-sm tracking-[0.2em] uppercase font-manrope font-medium text-primary-foreground/70 mb-4">
+              <p className="text-xs tracking-[0.2em] uppercase font-manrope font-medium text-primary-foreground/70 mb-4">
                 Artisan Bakery · Est. 2018
               </p>
-              <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6">
+              <h1 className="font-cormorant text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 tracking-wide">
                 We bake time,
                 <br />
                 so you don't have to.
               </h1>
-              <p className="text-base md:text-lg font-manrope text-primary-foreground/80 max-w-md mb-8 leading-relaxed">
+              <p className="text-sm font-manrope text-primary-foreground/80 max-w-md mb-8 leading-relaxed">
                 From signature layer cakes to handcrafted sweets, every creation is made with intention, care, and the finest ingredients.
               </p>
               <a
                 href="#featured"
-                className="inline-flex items-center justify-center bg-primary hover:bg-sl-gold-hover text-primary-foreground font-manrope font-semibold text-sm tracking-[0.1em] uppercase px-8 py-4 rounded-sm transition-colors w-fit"
+                className="inline-flex items-center justify-center border border-primary bg-transparent hover:bg-primary text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-8 py-4 rounded-none transition-colors w-fit"
               >
                 Explore Our Cakes
               </a>

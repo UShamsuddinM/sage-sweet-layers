@@ -39,13 +39,13 @@ const Navbar = () => {
           {/* Left Links */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              className="text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
+              className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
               onClick={() => { setSweetsOpen(false); setCakesOpen(!cakesOpen); }}
             >
               Cakes
             </button>
             <button
-              className="text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
+              className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
               onClick={() => { setCakesOpen(false); setSweetsOpen(!sweetsOpen); }}
             >
               Sweets
@@ -58,13 +58,13 @@ const Navbar = () => {
           </button>
 
           {/* Logo */}
-          <a href="/" className="absolute left-1/2 -translate-x-1/2 font-playfair text-2xl md:text-3xl font-bold tracking-wider text-primary">
+          <a href="/" className="absolute left-1/2 -translate-x-1/2 font-cormorant text-2xl md:text-3xl font-bold tracking-widest text-primary">
             SWEET LAYERS
           </a>
 
           {/* Right Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#custom" className="text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors">
+            <a href="#custom" className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors">
               Custom
             </a>
             <button className="text-foreground hover:text-primary transition-colors relative">
@@ -85,11 +85,11 @@ const Navbar = () => {
             <div className="max-w-5xl mx-auto px-6 py-10 grid grid-cols-3 gap-12">
               {Object.entries(cakesMegaMenu).map(([category, items]) => (
                 <div key={category}>
-                  <h4 className="font-playfair text-lg text-foreground mb-4">{category}</h4>
+                  <h4 className="font-cormorant text-lg text-foreground mb-4 tracking-wide">{category}</h4>
                   <ul className="space-y-2">
                     {items.map((item) => (
                       <li key={item}>
-                        <a href="#" className="text-sm font-manrope text-muted-foreground hover:text-primary transition-colors">{item}</a>
+                        <a href="#" className="text-xs font-manrope text-muted-foreground hover:text-primary transition-colors">{item}</a>
                       </li>
                     ))}
                   </ul>
@@ -105,7 +105,7 @@ const Navbar = () => {
             <div className="max-w-4xl mx-auto px-6 py-10 grid grid-cols-3 md:grid-cols-6 gap-6">
               {sweetsGrid.map((sweet) => (
                 <a href="#" key={sweet.name} className="flex flex-col items-center gap-2 group">
-                  <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center text-3xl group-hover:ring-2 group-hover:ring-primary transition-all">
+                  <div className="w-20 h-20 rounded-none bg-secondary flex items-center justify-center text-3xl group-hover:ring-2 group-hover:ring-primary transition-all">
                     {sweet.emoji}
                   </div>
                   <span className="text-xs font-manrope font-medium text-foreground tracking-wide uppercase">{sweet.name}</span>
@@ -118,9 +118,9 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div className="md:hidden bg-sl-cream border-b border-border px-6 py-6 space-y-4 z-50">
-            <a href="#" className="block text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Cakes</a>
-            <a href="#" className="block text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Sweets</a>
-            <a href="#custom" className="block text-sm tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Custom</a>
+            <a href="#" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Cakes</a>
+            <a href="#" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Sweets</a>
+            <a href="#custom" className="block text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground">Custom</a>
           </div>
         )}
       </nav>
