@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/context/CartContext";
 import {
   Select,
   SelectContent,
@@ -39,6 +40,7 @@ const PRODUCT_DATA = {
 type InscriptionMode = "none" | "standard" | "custom";
 
 const CakeConfigurator = () => {
+  const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("0");
   const [selectedFlavor, setSelectedFlavor] = useState(PRODUCT_DATA.flavors[0]);
   const [selectedPalette, setSelectedPalette] = useState(0);
@@ -220,8 +222,23 @@ const CakeConfigurator = () => {
             </div>
 
             {/* Add to Cart */}
-            <button className="w-full py-3.5 rounded-none bg-foreground text-background font-manrope font-semibold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-[#C5A059]">
-              Add to Cart
+            <button
+              onClick={() => {
+                const sizeData = PRODUCT_DATA.sizes[Number(selectedSize)];
+                const inscription = inscriptionMode === "standard" ? selectedPreset : inscriptionMode === "custom" ? customText : undefined;
+                addItem({
+                  id: `${Date.now()}`,
+                  name: PRODUCT_DATA.name,
+                  size: sizeData.label,
+                  flavor: selectedFlavor,
+                  price: sizeData.price,
+                  image: "/placeholder.svg",
+                  inscription,
+                });
+              }}
+              className="w-full py-3.5 rounded-none bg-foreground text-background font-manrope font-semibold text-xs tracking-[0.2em] uppercase transition-colors hover:bg-[#C5A059]"
+            >
+              Add to Cart — ${currentPrice}.00
             </button>
           </div>
 
