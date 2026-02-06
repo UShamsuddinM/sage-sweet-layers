@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingBag, X, Menu } from "lucide-react";
 
 const cakesMegaMenu = {
   "By Time": ["Same Day", "Next Day", "2-3 Days", "Weekly Specials"],
-  "By Occasion": ["Birthday", "Wedding", "Anniversary", "Baby Shower", "Graduation"],
+  "By Occasion": ["Birthday", "Wedding", "Anniversary", "Baby Shower", "Corporate Gifting"],
   "By Style": ["Classic", "Modern", "Minimalist", "Floral", "Custom"],
 };
 
 const sweetsGrid = [
-  { name: "Cookies", emoji: "🍪" },
-  { name: "Baklava", emoji: "🧁" },
-  { name: "Brownies", emoji: "🍫" },
-  { name: "Macarons", emoji: "🎀" },
-  { name: "Truffles", emoji: "🍬" },
-  { name: "Cupcakes", emoji: "🧁" },
+  { name: "Cookies" },
+  { name: "Baklava" },
+  { name: "Brownies" },
+  { name: "Macarons" },
+  { name: "Truffles" },
 ];
 
 const Navbar = () => {
@@ -23,10 +22,38 @@ const Navbar = () => {
   const [sweetsOpen, setSweetsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const closeAll = () => {
-    setCakesOpen(false);
+  const cakesTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sweetsTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openCakes = useCallback(() => {
+    if (sweetsTimeout.current) clearTimeout(sweetsTimeout.current);
+    if (cakesTimeout.current) clearTimeout(cakesTimeout.current);
     setSweetsOpen(false);
-  };
+    setCakesOpen(true);
+  }, []);
+
+  const closeCakes = useCallback(() => {
+    cakesTimeout.current = setTimeout(() => setCakesOpen(false), 150);
+  }, []);
+
+  const keepCakes = useCallback(() => {
+    if (cakesTimeout.current) clearTimeout(cakesTimeout.current);
+  }, []);
+
+  const openSweets = useCallback(() => {
+    if (cakesTimeout.current) clearTimeout(cakesTimeout.current);
+    if (sweetsTimeout.current) clearTimeout(sweetsTimeout.current);
+    setCakesOpen(false);
+    setSweetsOpen(true);
+  }, []);
+
+  const closeSweets = useCallback(() => {
+    sweetsTimeout.current = setTimeout(() => setSweetsOpen(false), 150);
+  }, []);
+
+  const keepSweets = useCallback(() => {
+    if (sweetsTimeout.current) clearTimeout(sweetsTimeout.current);
+  }, []);
 
   return (
     <>
@@ -42,13 +69,15 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <button
               className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
-              onClick={() => { closeAll(); navigate("/product/demo-cake"); }}
+              onMouseEnter={openCakes}
+              onMouseLeave={closeCakes}
             >
               Cakes
             </button>
             <button
               className="text-xs tracking-[0.15em] uppercase font-manrope font-semibold text-foreground hover:text-primary transition-colors"
-              onClick={() => { setCakesOpen(false); setSweetsOpen(!sweetsOpen); }}
+              onMouseEnter={openSweets}
+              onMouseLeave={closeSweets}
             >
               Sweets
             </button>
@@ -81,41 +110,61 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Cakes Mega Menu */}
-        {cakesOpen && (
-          <div className="absolute left-0 right-0 bg-sl-cream border-b border-border shadow-lg z-50" onMouseLeave={closeAll}>
-            <div className="max-w-5xl mx-auto px-6 py-10 grid grid-cols-3 gap-12">
-              {Object.entries(cakesMegaMenu).map(([category, items]) => (
-                <div key={category}>
-                  <h4 className="font-cormorant text-lg text-foreground mb-4 tracking-wide">{category}</h4>
-                  <ul className="space-y-2">
-                    {items.map((item) => (
-                      <li key={item}>
-                        <a href="#" className="text-xs font-manrope text-muted-foreground hover:text-primary transition-colors">{item}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+        {/* ─── CAKES MEGA MENU ─── */}
+        <div
+          className={`absolute left-0 right-0 bg-sl-sage border-b border-sl-gold/20 shadow-lg z-50 transition-all duration-200 ease-out origin-top ${
+            cakesOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
+          }`}
+          onMouseEnter={keepCakes}
+          onMouseLeave={closeCakes}
+        >
+          <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-3 gap-16">
+            {Object.entries(cakesMegaMenu).map(([category, items]) => (
+              <div key={category}>
+                <h4 className="font-manrope text-xs font-bold uppercase tracking-[0.2em] text-foreground mb-6">
+                  {category}
+                </h4>
+                <ul className="space-y-3">
+                  {items.map((item) => (
+                    <li key={item}>
+                      <a
+                        href="#"
+                        className="text-sm font-manrope text-foreground/80 hover:text-primary transition-colors"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                  <li>
+                    <a href="#" className="text-sm font-manrope text-primary hover:text-primary/80 transition-colors">
+                      See all
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
 
-        {/* Sweets Visual Grid */}
-        {sweetsOpen && (
-          <div className="absolute left-0 right-0 bg-sl-cream border-b border-border shadow-lg z-50" onMouseLeave={closeAll}>
-            <div className="max-w-4xl mx-auto px-6 py-10 grid grid-cols-3 md:grid-cols-6 gap-6">
-              {sweetsGrid.map((sweet) => (
-                <a href="#" key={sweet.name} className="flex flex-col items-center gap-2 group">
-                  <div className="w-20 h-20 rounded-none bg-secondary flex items-center justify-center text-3xl group-hover:ring-2 group-hover:ring-primary transition-all">
-                    {sweet.emoji}
-                  </div>
-                  <span className="text-xs font-manrope font-medium text-foreground tracking-wide uppercase">{sweet.name}</span>
-                </a>
-              ))}
-            </div>
+        {/* ─── SWEETS VISUAL MENU ─── */}
+        <div
+          className={`absolute left-0 right-0 bg-sl-cream border-b border-sl-gold/20 shadow-lg z-50 transition-all duration-200 ease-out origin-top ${
+            sweetsOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
+          }`}
+          onMouseEnter={keepSweets}
+          onMouseLeave={closeSweets}
+        >
+          <div className="max-w-4xl mx-auto px-6 py-12 grid grid-cols-5 gap-8">
+            {sweetsGrid.map((sweet) => (
+              <a href="#" key={sweet.name} className="flex flex-col items-center gap-3 group">
+                <div className="w-full aspect-square rounded-none bg-sl-sage border border-sl-gold/30 group-hover:border-sl-gold transition-colors" />
+                <span className="text-[11px] font-manrope font-semibold tracking-[0.15em] uppercase text-sl-gold">
+                  {sweet.name}
+                </span>
+              </a>
+            ))}
           </div>
-        )}
+        </div>
 
         {/* Mobile Menu */}
         {mobileOpen && (
