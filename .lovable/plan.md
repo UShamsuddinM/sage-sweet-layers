@@ -1,57 +1,93 @@
 
 
-# Sweet Layers 2.0 — Phase 1: Home Page Implementation
+# Wedding Concierge AI Chatbot
 
 ## What We're Building
-The complete Sweet Layers 2.0 home page with all 8 sections, using the "Sage & Gold Luxury" visual identity and alternating sage/cream block strategy.
 
----
+An AI-powered "Wedding Concierge" chatbot embedded directly into the Custom Inquiry page (`/custom`). Instead of filling out a long form and waiting for a callback, customers can have an interactive conversation with an AI assistant that helps them:
 
-## Section 1: Sticky Split Navigation
-- Top announcement bar (emerald `#2C3E36` background, cream text)
-- Center-aligned "SWEET LAYERS" logo in gold Playfair Display
-- Left: "CAKES" link (opens Mega-Matrix dropdown with 3 columns: By Time / By Occasion / By Style) and "SWEETS" link (opens visual pop-up grid with Cookies, Baklava, etc.)
-- Right: "CUSTOM" link and Cart icon
-- Sticky on scroll with clean sage/cream background
-- Dropdowns have solid backgrounds (not transparent), high z-index
+- Choose cake flavors and designs from your catalog
+- Build a full wedding sweets catering package (macarons, cookies, baklava to match)
+- Get instant pricing estimates based on guest count
+- Generate a complete wedding order summary they can submit or add to cart
 
-## Section 2: Hero Section (Sage Block — `#E8F3EE`)
-- Full-width sage background, 50/50 split on desktop
-- Left: Large Playfair heading "We bake time, so you don't have to." + subtitle + gold CTA button
-- Right: Tall placeholder image area styled with jade marble tones
-- **Cake Finder Widget** — horizontal bar overlapping the hero bottom edge (negative margin/absolute positioning) with: Date picker, Pickup/Delivery toggle, Flavor selector, and gold "Find Your Cake" button
+## How It Works
 
-## Section 3: Featured Collection (Cream Block — `#FDFCF8`)
-- "Signature Cakes" Playfair heading
-- Horizontal scrollable row of 4 product cards with placeholder images, cake names, and "From $XX" prices
-- Clean card styling, gold hover accents
+The chatbot appears as a luxury panel alongside (or replacing) the current inquiry form. The AI knows your full product catalog -- cakes, sweets, flavors, designs, and pricing -- and guides the customer through building their dream wedding package conversationally.
 
-## Section 4: Shop by Occasion (Sage Block — `#E8F3EE`)
-- "Shop by Occasion" Playfair heading
-- Asymmetric grid: 2 large tiles (Birthdays, Weddings) + 2 smaller tiles (Casual, Kids)
-- Placeholder colored divs with white text overlay labels
+```text
++----------------------------------------------------+
+|  /custom Page                                       |
+|                                                     |
+|  +-------------------+  +------------------------+ |
+|  |                   |  |  INQUIRY FORM (top)     | |
+|  |  LEFT PANEL       |  |  Contact + Event fields | |
+|  |  (visual/sticky)  |  |                         | |
+|  |                   |  +------------------------+ |
+|  |  "Let's create    |  |  WEDDING CONCIERGE     | |
+|  |   something       |  |  AI CHAT (below form)  | |
+|  |   unforgettable"  |  |                         | |
+|  |                   |  |  [AI messages + user    | |
+|  |                   |  |   selections appear     | |
+|  |                   |  |   here in a scrollable  | |
+|  |                   |  |   chat window]          | |
+|  |                   |  |                         | |
+|  |                   |  |  [Type your message...] | |
+|  +-------------------+  +------------------------+ |
++----------------------------------------------------+
+```
 
-## Section 5: Personalize Your Design (Cream Block — `#FDFCF8`)
-- Offset layout: text card overlapping a large image placeholder
-- Playfair heading + description + "SHOP NOW" underlined gold link
+## The AI Personality
 
-## Section 6: Customer Reviews (Sage Block — `#E8F3EE`)
-- "Customer Reviews" Playfair heading
-- Three testimonial cards with large gold quotation marks, review text, reviewer name
+The concierge is trained as a luxury wedding cake consultant with knowledge of:
+- All Sweet Layers cake flavors (vanilla bean, midnight chocolate, rose pistachio, lemon elderflower, etc.)
+- Design styles (modern tier, classic white, naked/rustic Jubilee line)
+- Complementary sweets packages (custom macarons, cookies, baklava, truffles)
+- Pricing by guest count and tier complexity
+- Delivery logistics and lead times
 
-## Section 7: Visit Our Shop (Cream Block — `#FDFCF8`)
-- Offset layout with location info card overlapping a shop photo placeholder
-- Address, hours, description text
+## Technical Architecture
 
-## Section 8: Footer (Sage Block — `#E8F3EE`)
-- Multi-column layout: Shop links, About, Contact
-- Social media icons, copyright line
-- Gold accent hover states
+### Backend: Supabase Edge Function
 
-## Technical Approach
-- Google Fonts: Playfair Display + Manrope loaded in `index.html`
-- All mock data hardcoded (no backend)
-- Responsive: stacked layouts on mobile
-- Custom color variables added to Tailwind config
-- Components organized under `src/components/` (Navbar, Hero, CakeFinder, FeaturedCakes, ShopByOccasion, Personalize, Reviews, VisitShop, Footer)
+A new `wedding-concierge` edge function will use **Lovable AI** (Gemini Flash) with a detailed system prompt containing your full product catalog and pricing. This keeps all product knowledge and prompt logic server-side.
+
+### Frontend: Streaming Chat Component
+
+A new `WeddingConcierge.tsx` component with:
+- Sage-and-gold styled chat bubbles (matching your design system)
+- Real-time token streaming for a responsive feel
+- Markdown rendering for formatted responses (flavor lists, pricing tables)
+- A persistent message history within the session
+
+### Integration into Custom Page
+
+The chat panel will be added below the existing inquiry form on the right side of the `/custom` page. Customers fill in their basic contact/event info first, then use the AI concierge to design their package.
+
+## Implementation Steps
+
+1. **Enable Lovable Cloud** (required for edge functions)
+2. **Create `supabase/functions/wedding-concierge/index.ts`** -- Edge function with:
+   - A rich system prompt defining the AI as a luxury wedding cake consultant
+   - Full product catalog embedded (flavors, designs, sweets, prices)
+   - Streaming SSE response using Lovable AI gateway
+   - Rate limit (429) and payment (402) error handling
+3. **Create `src/components/WeddingConcierge.tsx`** -- Chat UI with:
+   - Sage header bar with gold "Wedding Concierge" title
+   - Scrollable message area with cream background + noise texture
+   - User messages (right-aligned, sage bubble) and AI messages (left-aligned, cream bubble)
+   - Sharp-cornered input bar with gold border and send button
+   - Loading indicator while AI is responding
+   - Markdown rendering via `react-markdown` (new dependency)
+4. **Update `src/pages/CustomPage.tsx`** -- Add the concierge chat section below the inquiry form
+5. **Update `supabase/config.toml`** -- Register the new edge function
+
+## Visual Design (Jade and Gold)
+
+- Chat container: `bg-sl-cream` with `cream-grain` texture, `border border-sl-gold/30`
+- AI bubbles: `bg-white border border-sl-gold/20` with Manrope body text
+- User bubbles: `bg-sl-sage` with deep emerald text
+- Input field: Sharp corners (`rounded-none`), gold border on focus
+- Send button: `bg-sl-emerald text-sl-gold` with uppercase tracking
+- Header: `bg-sl-sage` with Cormorant Garamond title
 
