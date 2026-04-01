@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CalendarIcon, Upload } from "lucide-react";
+import WeddingConcierge from "@/components/WeddingConcierge";
 import { format } from "date-fns";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
