@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CalendarIcon, Upload } from "lucide-react";
+import WeddingConcierge from "@/components/WeddingConcierge";
 import { format } from "date-fns";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -207,6 +208,20 @@ const CustomPage = () => {
               We typically respond within 24 hours.
             </p>
           </form>
+
+          {/* ─── Wedding Concierge AI Chat ─── */}
+          <div className="max-w-lg mx-auto px-8 pb-12 lg:pb-20">
+            <div className="mb-6">
+              <p className="text-[10px] font-manrope font-bold uppercase tracking-[0.2em] text-sl-gold mb-2">
+                Or chat with our AI
+              </p>
+              <p className="text-xs font-manrope text-foreground/60 leading-relaxed">
+                Not sure where to start? Our Wedding Concierge can help you choose flavors,
+                designs, and build a complete sweets package — instantly.
+              </p>
+            </div>
+            <WeddingConcierge />
+          </div>
         </div>
       </div>
 
