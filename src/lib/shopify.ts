@@ -1,9 +1,9 @@
 import { toast } from "sonner";
 
 const SHOPIFY_API_VERSION = '2025-07';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'sweet-layers-luxe-juzvi.myshopify.com';
+const SHOPIFY_STORE_PERMANENT_DOMAIN = 'iyeyb5-2r.myshopify.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = 'cc3f056f0c913219c81d7deaffb5809d';
+const SHOPIFY_STOREFRONT_TOKEN = '7d48519551ae0faa72f19556b0c11acf';
 
 // ─── Types ───────────────────────────────────────────────────────────
 
