@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-cormorant text-2xl font-bold text-primary mb-4 tracking-widest">SWEET LAYERS</h3>
             <p className="font-manrope text-xs text-muted-foreground leading-relaxed">
-              Artisan cakes & sweets made with love in San Francisco.
+              Artisan cakes & sweets made with love in the Bay Area, CA.
             </p>
           </div>
 
@@ -41,8 +41,7 @@ const Footer = () => {
           <div>
             <h4 className="font-manrope font-semibold text-xs uppercase tracking-[0.15em] text-foreground mb-4">Contact</h4>
             <ul className="space-y-2">
-              <li><span className="font-manrope text-xs text-muted-foreground">hello@sweetlayers.com</span></li>
-              <li><span className="font-manrope text-xs text-muted-foreground">(415) 555-0187</span></li>
+              <li><span className="font-manrope text-xs text-muted-foreground">sweetlayersorder@gmail.com</span></li>
               <li>
                 <div className="flex gap-3 mt-2">
                   <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram size={18} /></a>
