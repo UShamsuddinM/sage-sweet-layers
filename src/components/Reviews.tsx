@@ -1,18 +1,25 @@
+import { Star } from "lucide-react";
+
 const reviews = [
   {
-    text: "The best cake I've ever had. The layers were perfect, and the flavors were out of this world. Everyone at the party was asking where I got it.",
-    name: "Sarah M.",
-    source: "Google Review",
+    text: "There are three things that need to be explained to understand the experience with Sweet Layers — ordering process, presentation, and the cake itself. All three are shockingly good. The presentation was stunning. A very elegant cake box wrapped around a perfectly iced tall slim cake trimmed with beautiful flowers and gold leaf. The cake itself was a light buttery vanilla cake layered with perfectly whipped vanilla buttercream and a tangy lemon curd. I cannot recommend Munisa enough. She is a master of her craft.",
+    name: "Eli Anderson",
+    rating: 5,
   },
   {
-    text: "Sweet Layers made our wedding cake exactly how we envisioned it. The attention to detail was incredible, and it tasted even better than it looked.",
-    name: "James & Lily R.",
-    source: "Wedding Wire",
+    text: "Ordered a custom birthday cake in pistachio and she made sure I was happy with the design and flavor. The cake came out beautifully as promised and the pistachio flavor was delicious with generous amounts of pistachio pieces in the cake.",
+    name: "Brian Abrigana",
+    rating: 5,
   },
   {
-    text: "I order from Sweet Layers every month. Their baklava is phenomenal, and the cookies are always fresh. Can't recommend them enough!",
-    name: "Amira K.",
-    source: "Yelp",
+    text: "We were ordering for my grandmas 102nd birthday from out of state and my expectations were exceeded. Even being a couple states away, Munisa was easy to communicate with and went above and beyond to bring my inspiration for a cake to life.",
+    name: "Maria Felipe",
+    rating: 5,
+  },
+  {
+    text: "I had a different request since my daughters 8th birthday theme was a Roblox theme. She was able to do the cake almost identical to what the picture looked like. The cake was delicious, my guests were actually complimenting the chocolate she used instead of icing. Honestly 10 out of 10!",
+    name: "Michelle Izaguirre",
+    rating: 5,
   },
 ];
 
@@ -21,18 +28,22 @@ const Reviews = () => {
     <section className="bg-sl-sage py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-xs tracking-[0.2em] uppercase font-manrope font-medium text-muted-foreground mb-3">What Our Customers Say</p>
-          <h2 className="font-cormorant text-3xl md:text-4xl font-bold text-foreground tracking-wide">Customer Reviews</h2>
+          <p className="text-xs tracking-[0.2em] uppercase font-manrope font-medium text-muted-foreground mb-3">Real reviews from Google</p>
+          <h2 className="font-cormorant text-3xl md:text-4xl font-bold text-foreground tracking-wide">What Our Customers Are Saying</h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {reviews.map((review) => (
-            <div key={review.name} className="bg-background rounded-none p-8 shadow-sm">
-              <span className="font-cormorant text-5xl text-primary leading-none block mb-4">"</span>
-              <p className="font-manrope text-xs text-muted-foreground leading-relaxed mb-6">{review.text}</p>
+            <div key={review.name} className="bg-background rounded-none p-8 shadow-sm flex flex-col">
+              <div className="flex gap-1 mb-4" aria-label={`${review.rating} star rating`}>
+                {Array.from({ length: review.rating }).map((_, i) => (
+                  <Star key={i} size={14} className="fill-sl-gold text-sl-gold" />
+                ))}
+              </div>
+              <p className="font-manrope text-xs text-muted-foreground leading-relaxed mb-6 flex-1">{review.text}</p>
               <div>
                 <p className="font-manrope font-semibold text-xs text-foreground">{review.name}</p>
-                <p className="font-manrope text-[11px] text-muted-foreground">{review.source}</p>
+                <p className="font-manrope text-[11px] text-muted-foreground">Google Review</p>
               </div>
             </div>
           ))}
