@@ -1,7 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShoppingBag, X, Menu } from "lucide-react";
-import { useCartStore } from "@/stores/cartStore";
+import { X, Menu } from "lucide-react";
 
 const cakesMegaMenu = {
   "By Time": ["Same Day", "Next Day", "2-3 Days", "Weekly Specials"],
@@ -19,8 +18,6 @@ const sweetsGrid = [
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const openCart = useCartStore(s => s.openCart);
-  const count = useCartStore(s => s.count);
   const [cakesOpen, setCakesOpen] = useState(false);
   const [sweetsOpen, setSweetsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -62,7 +59,7 @@ const Navbar = () => {
     <>
       {/* Announcement Bar */}
       <div className="bg-sl-emerald text-sl-cream text-center py-2 text-xs tracking-[0.2em] font-manrope uppercase">
-        Free delivery on orders over $75 · Same-day pickup available
+        Handcrafted to order · 1 day notice for sweets · 3 days for cakes · 2 weeks for wedding cakes
       </div>
 
       {/* Main Nav */}
@@ -104,21 +101,7 @@ const Navbar = () => {
             >
               Custom
             </button>
-            <button onClick={openCart} className="text-foreground hover:text-primary transition-colors relative">
-              <ShoppingBag size={20} />
-              {count > 0 && (
-                <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">{count}</span>
-              )}
-            </button>
           </div>
-
-          {/* Mobile cart */}
-          <button onClick={openCart} className="md:hidden text-foreground hover:text-primary transition-colors relative">
-            <ShoppingBag size={20} />
-            {count > 0 && (
-              <span className="absolute -top-1 -right-2 bg-primary text-primary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-manrope">{count}</span>
-            )}
-          </button>
         </div>
 
         {/* ─── CAKES MEGA MENU ─── */}

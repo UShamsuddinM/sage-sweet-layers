@@ -1,4 +1,4 @@
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 
 const VisitShop = () => {
   return (
@@ -15,15 +15,11 @@ const VisitShop = () => {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="font-manrope text-xs text-foreground">123 Baker Street, Suite 4<br />San Francisco, CA 94102</p>
+                <p className="font-manrope text-xs text-foreground">18020 Broadwell St<br />Lathrop, CA</p>
               </div>
               <div className="flex items-start gap-3">
                 <Clock size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="font-manrope text-xs text-foreground">Tue – Sat: 9am – 7pm<br />Sun: 10am – 4pm</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="font-manrope text-xs text-foreground">(415) 555-0187</p>
+                <p className="font-manrope text-xs text-foreground">Mon – Fri: 9am – 6pm<br />Sat – Sun: 10am – 7pm</p>
               </div>
             </div>
           </div>
