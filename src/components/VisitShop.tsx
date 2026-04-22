@@ -15,7 +15,7 @@ const VisitShop = () => {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
-                <p className="font-manrope text-xs text-foreground">18020 Broadwell St<br />Lathrop, CA</p>
+                <p className="font-manrope text-xs text-foreground">Pickup location provided upon order confirmation.</p>
               </div>
               <div className="flex items-start gap-3">
                 <Clock size={18} className="text-primary mt-0.5 shrink-0" />
