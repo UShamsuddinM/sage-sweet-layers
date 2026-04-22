@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { Loader2 } from "lucide-react";
 
 const FeaturedCakes = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,10 +32,12 @@ const FeaturedCakes = () => {
               const imgUrl = p.images.edges[0]?.node?.url;
               const price = parseFloat(p.priceRange.minVariantPrice.amount).toFixed(2);
               return (
-                <button
-                  onClick={() => navigate(`/product/${p.handle}`)}
+                <a
+                  href="https://cash.app/$sweetlayersus"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={p.id}
-                  className="group text-left cursor-pointer"
+                  className="group text-left cursor-pointer block"
                 >
                   <div className="aspect-[3/4] rounded-none mb-4 overflow-hidden group-hover:shadow-lg transition-shadow border border-sl-gold/20">
                     {imgUrl ? (
@@ -50,7 +50,7 @@ const FeaturedCakes = () => {
                     {p.title}
                   </h3>
                   <p className="text-xs font-manrope text-muted-foreground mt-1">From ${price}</p>
-                </button>
+                </a>
               );
             })}
           </div>

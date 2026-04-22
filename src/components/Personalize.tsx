@@ -15,7 +15,7 @@ const Personalize = () => {
             <p className="font-manrope text-sm text-muted-foreground leading-relaxed mb-8">
               Choose your layers, flavors, and frosting. Add a message, pick your colors, and create something uniquely yours. Every cake tells a story — let's write yours together.
             </p>
-            <a href="#" className="inline-block font-manrope font-semibold text-xs tracking-[0.15em] uppercase text-primary border-b-2 border-primary hover:text-sl-gold-hover hover:border-sl-gold-hover transition-colors pb-1">
+            <a href="https://cash.app/$sweetlayersus" target="_blank" rel="noopener noreferrer" className="inline-block font-manrope font-semibold text-xs tracking-[0.15em] uppercase text-primary border-b-2 border-primary hover:text-sl-gold-hover hover:border-sl-gold-hover transition-colors pb-1">
               Shop Now
             </a>
           </div>

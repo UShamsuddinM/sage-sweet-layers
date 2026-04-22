@@ -22,7 +22,9 @@ const Hero = () => {
                 From signature layer cakes to handcrafted sweets, every creation is made with intention, care, and the finest ingredients.
               </p>
               <a
-                href="#featured"
+                href="https://cash.app/$sweetlayersus"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center border border-primary bg-transparent hover:bg-primary text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-8 py-4 rounded-none transition-colors w-fit"
               >
                 Explore Our Cakes

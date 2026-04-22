@@ -86,16 +86,8 @@ const CakeConfigurator = () => {
 
   const p = product.node;
 
-  const handleAddToCart = async () => {
-    if (!selectedVariant || !product) return;
-    await addItem({
-      product,
-      variantId: selectedVariant.id,
-      variantTitle: selectedVariant.title,
-      price: selectedVariant.price,
-      quantity: 1,
-      selectedOptions: selectedVariant.selectedOptions || [],
-    });
+  const handleAddToCart = () => {
+    window.open("https://cash.app/$sweetlayersus", "_blank", "noopener,noreferrer");
   };
 
   return (
