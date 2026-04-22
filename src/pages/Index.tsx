@@ -1,11 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ValentineSweets from "@/components/ValentineSweets";
-import JubileeCollection from "@/components/JubileeCollection";
+import MoreComingSoon from "@/components/MoreComingSoon";
 import FeaturedCakes from "@/components/FeaturedCakes";
 import WeddingSuite from "@/components/WeddingSuite";
 import Atelier from "@/components/Atelier";
-import ShopByOccasion from "@/components/ShopByOccasion";
+import ShopByOccasionBanner from "@/components/ShopByOccasionBanner";
 import Patisserie from "@/components/Patisserie";
 import Reviews from "@/components/Reviews";
 import Personalize from "@/components/Personalize";
@@ -18,12 +17,11 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <ValentineSweets />
-        <JubileeCollection />
+        <MoreComingSoon />
         <FeaturedCakes />
         <WeddingSuite />
         <Atelier />
-        <ShopByOccasion />
+        <ShopByOccasionBanner />
         <Patisserie />
         <Reviews />
         <Personalize />
