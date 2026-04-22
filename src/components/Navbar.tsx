@@ -62,7 +62,7 @@ const Navbar = () => {
     <>
       {/* Announcement Bar */}
       <div className="bg-sl-emerald text-sl-cream text-center py-2 text-xs tracking-[0.2em] font-manrope uppercase">
-        Free delivery on orders over $75 · Same-day pickup available
+        Handcrafted to order · 1 day notice for sweets · 3 days for cakes · 2 weeks for wedding cakes
       </div>
 
       {/* Main Nav */}
