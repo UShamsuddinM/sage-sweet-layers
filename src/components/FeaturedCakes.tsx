@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { Loader2 } from "lucide-react";
 
 const FeaturedCakes = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
 

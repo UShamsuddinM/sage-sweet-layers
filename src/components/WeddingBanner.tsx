@@ -1,8 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 const WeddingBanner = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background shimmer */}
