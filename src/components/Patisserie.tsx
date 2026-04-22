@@ -1,13 +1,92 @@
 import baklava from "@/assets/patisserie-baklava.png";
-import cinnamonRoll from "@/assets/patisserie-cinnamon-roll.jpg";
-import pistachioRoll from "@/assets/patisserie-pistachio-roll.png";
+import cinnamonClassic from "@/assets/patisserie-cinnamon-roll.jpg";
+import cinnamonBlueberry from "@/assets/cinnamon-blueberry.jpg";
+import cinnamonPistachio from "@/assets/patisserie-pistachio-roll.png";
+import cinnamonStrawberry from "@/assets/cinnamon-strawberry.png";
+import { useState, useEffect } from "react";
 
-const treats = [
-  { name: "Baklava", image: baklava },
-  { name: "Cinnamon Rolls", image: cinnamonRoll },
-  { name: "Cream Rolls", image: null },
-  { name: "Pistachio Roll Cake", image: pistachioRoll },
+const cinnamonGallery = [
+  { src: cinnamonClassic, alt: "Classic cinnamon roll with cream cheese frosting" },
+  { src: cinnamonBlueberry, alt: "Cinnamon roll topped with blueberry compote" },
+  { src: cinnamonPistachio, alt: "Cinnamon roll dusted with crushed pistachios" },
+  { src: cinnamonStrawberry, alt: "Cinnamon roll glazed with strawberry sauce" },
 ];
+
+const CinnamonRollCard = () => {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % cinnamonGallery.length), 3500);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="group">
+      <div className="aspect-square rounded-none mb-4 overflow-hidden border border-[hsl(var(--sl-gold)/0.2)] bg-sl-cream relative">
+        {cinnamonGallery.map((img, i) => (
+          <img
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {cinnamonGallery.map((_, i) => (
+            <span
+              key={i}
+              className={`block h-1 w-1 rounded-full transition-colors ${
+                i === index ? "bg-sl-gold" : "bg-primary-foreground/50"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+      <h3 className="font-cormorant text-base font-semibold text-foreground tracking-wide">
+        Cinnamon Rolls
+      </h3>
+      <p className="font-manrope text-xs text-muted-foreground mt-1 italic">
+        Classic, blueberry, pistachio &amp; strawberry — visit our menu to order.
+      </p>
+    </div>
+  );
+};
+
+const StaticCard = ({
+  name,
+  image,
+  alt,
+}: {
+  name: string;
+  image: string | null;
+  alt?: string;
+}) => (
+  <div className="group">
+    <div className="aspect-square rounded-none mb-4 overflow-hidden border border-[hsl(var(--sl-gold)/0.2)] bg-sl-cream">
+      {image ? (
+        <img
+          src={image}
+          alt={alt ?? name}
+          loading="lazy"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <div className="w-full h-full bg-[#E8F3EE] flex items-center justify-center">
+          <span className="font-cormorant italic text-sm tracking-wide text-[#2C3E36]/40">
+            {name}
+          </span>
+        </div>
+      )}
+    </div>
+    <h3 className="font-cormorant text-base font-semibold text-foreground tracking-wide">
+      {name}
+    </h3>
+    <p className="font-manrope text-xs text-muted-foreground mt-1 italic">
+      Available to order — visit our menu to place your order.
+    </p>
+  </div>
+);
 
 const Patisserie = () => {
   return (
@@ -23,28 +102,10 @@ const Patisserie = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {treats.map((treat) => (
-            <div key={treat.name} className="group">
-              <div className="aspect-square rounded-none mb-4 overflow-hidden transition-shadow border border-[hsl(var(--sl-gold)/0.2)] bg-sl-cream">
-                {treat.image ? (
-                  <img
-                    src={treat.image}
-                    alt={treat.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full shimmer-placeholder" />
-                )}
-              </div>
-              <h3 className="font-cormorant text-base font-semibold text-foreground tracking-wide">
-                {treat.name}
-              </h3>
-              <p className="font-manrope text-xs text-muted-foreground mt-1 italic">
-                Available to order — visit our menu to place your order.
-              </p>
-            </div>
-          ))}
+          <StaticCard name="Baklava" image={baklava} />
+          <CinnamonRollCard />
+          <StaticCard name="Cream Rolls" image={null} />
+          <StaticCard name="Pistachio Roll Cake" image={null} />
         </div>
       </div>
     </section>
