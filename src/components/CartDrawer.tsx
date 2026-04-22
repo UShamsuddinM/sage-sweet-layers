@@ -15,8 +15,8 @@ const CartDrawer = () => {
   useEffect(() => { if (isOpen) syncCart(); }, [isOpen, syncCart]);
 
   const handleCheckout = () => {
-    const url = getCheckoutUrl();
-    if (url) { window.open(url, '_blank'); closeCart(); }
+    window.open("https://cash.app/$sweetlayersus", "_blank", "noopener,noreferrer");
+    closeCart();
   };
 
   return (

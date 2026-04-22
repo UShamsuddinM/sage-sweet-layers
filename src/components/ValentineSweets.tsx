@@ -19,12 +19,14 @@ const ValentineSweets = () => {
             <p className="font-manrope text-sm text-muted-foreground leading-relaxed mb-8 max-w-md mx-auto md:mx-0">
               Limited edition flavors crafted for love. Rose-petal macarons, heart-shaped truffles, and decadent chocolate layers — only available this season.
             </p>
-            <Link
-              to="/"
+            <a
+              href="https://cash.app/$sweetlayersus"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center border border-primary bg-primary hover:bg-[hsl(var(--sl-gold-hover))] text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-8 py-4 rounded-none transition-colors"
             >
               Shop the Collection
-            </Link>
+            </a>
           </div>
         </div>
       </div>

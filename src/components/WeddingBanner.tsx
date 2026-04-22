@@ -20,12 +20,14 @@ const WeddingBanner = () => {
         <p className="text-sm font-manrope text-primary-foreground/80 mb-10 leading-relaxed">
           Let us sculpt your love story in sugar.
         </p>
-        <button
-          onClick={() => navigate("/custom")}
+        <a
+          href="https://cash.app/$sweetlayersus"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center border border-primary bg-transparent hover:bg-primary text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-10 py-4 rounded-none transition-colors"
         >
           Inquire Now
-        </button>
+        </a>
       </div>
     </section>
   );

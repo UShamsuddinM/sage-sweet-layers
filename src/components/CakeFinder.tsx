@@ -74,9 +74,9 @@ const CakeFinder = () => {
         </select>
 
         {/* CTA */}
-        <button onClick={() => navigate("/product/demo-cake")} className="border border-primary bg-transparent hover:bg-primary text-primary hover:text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-6 py-3 rounded-none transition-colors whitespace-nowrap">
+        <a href="https://cash.app/$sweetlayersus" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center border border-primary bg-transparent hover:bg-primary text-primary hover:text-primary-foreground font-manrope font-semibold text-xs tracking-[0.15em] uppercase px-6 py-3 rounded-none transition-colors whitespace-nowrap">
           Find Your Cake
-        </button>
+        </a>
       </div>
     </div>
   );
