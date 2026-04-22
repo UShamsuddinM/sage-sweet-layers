@@ -1,8 +1,15 @@
+import weddingRoses from "@/assets/wedding-roses.jpg";
+
 const WeddingBanner = () => {
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background shimmer */}
-      <div className="absolute inset-0 shimmer-placeholder" />
+      {/* Background image */}
+      <img
+        src={weddingRoses}
+        alt="Five-tier white wedding cake adorned with cascading roses"
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-[hsl(152,17%,15%)]/60" />
 

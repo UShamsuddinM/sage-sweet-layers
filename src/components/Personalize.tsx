@@ -1,11 +1,18 @@
+import personalizeImage from "@/assets/cake-custom-pink.jpg";
+
 const Personalize = () => {
   return (
     <section className="bg-sl-cream cream-grain py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Image placeholder */}
-          <div className="aspect-[4/5] rounded-none bg-gradient-to-br from-[hsl(144,20%,70%)] to-[hsl(152,17%,50%)] flex items-center justify-center">
-            <span className="font-cormorant text-xl text-primary-foreground/30 italic">Personalize Image</span>
+          {/* Image */}
+          <div className="aspect-[4/5] rounded-none overflow-hidden border border-[hsl(var(--sl-gold)/0.2)]">
+            <img
+              src={personalizeImage}
+              alt="Pink birthday cake with gold leaf detailing"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* Text card offset */}
