@@ -1,8 +1,8 @@
 const treats = [
-  { name: "Butter Cookies", price: 12, desc: "Hand-pressed & golden" },
-  { name: "Pistachio Baklava", price: 18, desc: "Layers of phyllo & honey" },
-  { name: "French Macarons", price: 24, desc: "Box of 12, assorted" },
-  { name: "Dark Truffles", price: 16, desc: "72% cacao, hand-rolled" },
+  { name: "Baklava" },
+  { name: "Cinnamon Rolls" },
+  { name: "Cream Rolls" },
+  { name: "Pistachio Roll Cake" },
 ];
 
 const Patisserie = () => {
@@ -20,13 +20,14 @@ const Patisserie = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {treats.map((treat) => (
-            <div key={treat.name} className="group cursor-pointer">
-              <div className="aspect-square rounded-none mb-4 shimmer-placeholder group-hover:shadow-lg transition-shadow border border-[hsl(var(--sl-gold)/0.2)]" />
-              <h3 className="font-cormorant text-base font-semibold text-foreground group-hover:text-primary transition-colors tracking-wide">
+            <div key={treat.name} className="group">
+              <div className="aspect-square rounded-none mb-4 shimmer-placeholder transition-shadow border border-[hsl(var(--sl-gold)/0.2)]" />
+              <h3 className="font-cormorant text-base font-semibold text-foreground tracking-wide">
                 {treat.name}
               </h3>
-              <p className="font-manrope text-xs text-muted-foreground mt-1">{treat.desc}</p>
-              <p className="font-manrope text-xs text-muted-foreground mt-1">${treat.price}</p>
+              <p className="font-manrope text-xs text-muted-foreground mt-1 italic">
+                Available to order — visit our menu to place your order.
+              </p>
             </div>
           ))}
         </div>
