@@ -1,9 +1,8 @@
 import CakeFinder from "./CakeFinder";
-import weddingRoses from "@/assets/wedding-roses.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative" style={{ backgroundImage: `url(${weddingRoses})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <section className="relative" style={{ backgroundImage: "url('/images/green-marble.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-0 min-h-[600px] md:min-h-[700px]">
           {/* Left — Text with dark overlay for readability */}
@@ -15,12 +14,12 @@ const Hero = () => {
                 Artisan Bakery · Est. 2018
               </p>
               <h1 className="font-cormorant text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 tracking-wide">
-                We bake time,
+                Every Layer
                 <br />
-                so you don't have to.
+                Tells a Story.
               </h1>
               <p className="text-sm font-manrope text-primary-foreground/80 max-w-md mb-8 leading-relaxed">
-                From signature layer cakes to handcrafted sweets, every creation is made with intention, care, and the finest ingredients.
+                Handcrafted cakes and sweets made to sweeten your most cherished moments.
               </p>
               <a
                 href="https://cash.app/$sweetlayersus"
