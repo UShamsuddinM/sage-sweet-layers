@@ -1,8 +1,12 @@
+import baklava from "@/assets/patisserie-baklava.png";
+import cinnamonRoll from "@/assets/patisserie-cinnamon-roll.jpg";
+import pistachioRoll from "@/assets/patisserie-pistachio-roll.png";
+
 const treats = [
-  { name: "Baklava" },
-  { name: "Cinnamon Rolls" },
-  { name: "Cream Rolls" },
-  { name: "Pistachio Roll Cake" },
+  { name: "Baklava", image: baklava },
+  { name: "Cinnamon Rolls", image: cinnamonRoll },
+  { name: "Cream Rolls", image: null },
+  { name: "Pistachio Roll Cake", image: pistachioRoll },
 ];
 
 const Patisserie = () => {
@@ -21,7 +25,18 @@ const Patisserie = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {treats.map((treat) => (
             <div key={treat.name} className="group">
-              <div className="aspect-square rounded-none mb-4 shimmer-placeholder transition-shadow border border-[hsl(var(--sl-gold)/0.2)]" />
+              <div className="aspect-square rounded-none mb-4 overflow-hidden transition-shadow border border-[hsl(var(--sl-gold)/0.2)] bg-sl-cream">
+                {treat.image ? (
+                  <img
+                    src={treat.image}
+                    alt={treat.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full shimmer-placeholder" />
+                )}
+              </div>
               <h3 className="font-cormorant text-base font-semibold text-foreground tracking-wide">
                 {treat.name}
               </h3>

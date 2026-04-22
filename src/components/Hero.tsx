@@ -1,8 +1,9 @@
 import CakeFinder from "./CakeFinder";
+import weddingRoses from "@/assets/wedding-roses.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative" style={{ backgroundImage: "url('/images/green-marble.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+    <section className="relative" style={{ backgroundImage: `url(${weddingRoses})`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-0 min-h-[600px] md:min-h-[700px]">
           {/* Left — Text with dark overlay for readability */}
@@ -32,14 +33,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right — transparent to show marble through */}
+          {/* Right — transparent to show image through */}
           <div className="hidden md:flex items-stretch" />
         </div>
       </div>
 
       {/* Dark overlay covering left half only */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[hsl(152,17%,15%)]/40 via-[hsl(152,17%,15%)]/25 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[hsl(152,17%,15%)]/50 via-[hsl(152,17%,15%)]/30 to-transparent" />
       </div>
 
       {/* Cake Finder overlapping bottom */}

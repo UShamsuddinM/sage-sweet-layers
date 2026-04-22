@@ -1,7 +1,11 @@
+import customCake from "@/assets/cake-custom-pink.jpg";
+import pistachioCake from "@/assets/cake-pistachio.jpg";
+import fondantCake from "@/assets/cake-fondant.jpg";
+
 const cakes = [
-  { name: "Custom Cake", price: 100 },
-  { name: "Pistachio Cake", price: 125 },
-  { name: "Fondant Cake", price: 245 },
+  { name: "Custom Cake", price: 100, image: customCake },
+  { name: "Pistachio Cake", price: 125, image: pistachioCake },
+  { name: "Fondant Cake", price: 245, image: fondantCake },
 ];
 
 const FeaturedCakes = () => {
@@ -23,7 +27,14 @@ const FeaturedCakes = () => {
               key={cake.name}
               className="group text-left cursor-pointer block"
             >
-              <div className="aspect-[3/4] rounded-none mb-4 overflow-hidden group-hover:shadow-lg transition-shadow border border-sl-gold/20 shimmer-placeholder" />
+              <div className="aspect-[3/4] rounded-none mb-4 overflow-hidden group-hover:shadow-lg transition-shadow border border-sl-gold/20">
+                <img
+                  src={cake.image}
+                  alt={cake.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
               <h3 className="font-cormorant text-lg md:text-xl font-semibold text-foreground group-hover:text-primary transition-colors tracking-wide">
                 {cake.name}
               </h3>
