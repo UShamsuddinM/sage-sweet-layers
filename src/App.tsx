@@ -8,6 +8,8 @@ import CartDrawer from "@/components/CartDrawer";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import CustomPage from "./pages/CustomPage";
+import Auth from "./pages/Auth";
+import OAuthConsent from "./pages/OAuthConsent";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
