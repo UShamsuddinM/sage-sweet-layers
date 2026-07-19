@@ -26,6 +26,8 @@ const AppInner = () => {
           <Route path="/" element={<Index />} />
           <Route path="/product/:handle" element={<ProductPage />} />
           <Route path="/custom" element={<CustomPage />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
