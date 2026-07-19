@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://ogmpjsuxzkvwszoqeqjb.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "sweet-layers-mcp",
+      "version": "0.1.0",
+      "title": "Sweet Layers"
+    },
+    "tools": [
+      {
+        "name": "list_products",
+        "title": "List cakes and sweets",
+        "description": "Browse the Sweet Layers product catalog (handle, title, description, price).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "limit": {
+              "default": 10,
+              "description": "Max products to return (1–50).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Get product details",
+        "description": "Fetch a single product by its Shopify handle, including variants and pricing.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "handle": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The Shopify product handle, e.g. 'the-minimalist'."
+            }
+          },
+          "required": [
+            "handle"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "whoami",
+        "title": "Who am I",
+        "description": "Returns the signed-in Sweet Layers user identity for the current MCP session.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

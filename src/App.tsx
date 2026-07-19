@@ -8,6 +8,8 @@ import CartDrawer from "@/components/CartDrawer";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import CustomPage from "./pages/CustomPage";
+import Auth from "./pages/Auth";
+import OAuthConsent from "./pages/OAuthConsent";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const AppInner = () => {
           <Route path="/" element={<Index />} />
           <Route path="/product/:handle" element={<ProductPage />} />
           <Route path="/custom" element={<CustomPage />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
